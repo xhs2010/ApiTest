@@ -1,0 +1,62 @@
+- name: 查询活动-活动ID正确
+  request:
+    url: https://
+    headers:
+      content-type: application/json;charset=UTF-8
+      Connection: close
+    method: post
+    data:
+      utcOffset: 8
+      page: 1
+      limit: 10
+      activityId: HD100770
+  validate:
+    equals: {activityId: HD100770}
+
+- name: 查询活动-活动ID不存在
+  request:
+    url: https://
+    headers:
+      content-type: application/json;charset=UTF-8
+      Connection: close
+    method: post
+    data:
+      utcOffset: 8
+      page: 1
+      limit: 10
+      activityId: HD100064
+  validate:
+    equals: {message: '一切 ok'}
+
+
+- name: 查询活动-活动ID输入空格
+  request:
+    url: https://
+    headers:
+      content-type: application/json;charset=UTF-8
+      Connection: close
+    method: post
+    data:
+      utcOffset: 8
+      page: 1
+      limit: 10
+      activityId:
+  validate:
+    equals: {message: '一切 ok'}
+
+
+
+- name: 查询活动-活动ID 模糊搜索
+  request:
+    url: https://
+    headers:
+      content-type: application/json;charset=UTF-8
+      Connection: close
+    method: post
+    data:
+      utcOffset: 8
+      page: 1
+      limit: 10
+      activityId: HD1007
+  validate:
+    equals: {message: '一切 ok'}
