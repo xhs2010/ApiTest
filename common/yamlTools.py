@@ -34,6 +34,13 @@ class  YamlTools:
             value=yaml.load(stream=f,Loader=yaml.FullLoader)
             return value
 
+    #读取环境配置文件environment.yml
+    def read_environment_yaml(self):
+        with open((os.path.dirname((os.path.dirname(__file__)))) + "/environment.yml", mode='r',encoding='utf-8') as f:
+            value = yaml.load(stream=f, Loader=yaml.FullLoader) #OK
 
+            #print(value)
+            con_url=value['environment']['url']
 
-
+            return con_url
+    

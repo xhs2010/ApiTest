@@ -23,6 +23,8 @@ import pytest
 class TestActivityCenter:
     global logger
     logger = Logger()
+    global con_url
+    con_url=YamlTools().read_environment_yaml()  #读取environment配置文件的域名端口号
 
     @pytest.mark.parametrize("activity_center_info", YamlTools().read_yaml('query_activity.yml'))
     def test_ActivityCenter(self, activity_center_info,read_token): #OK
@@ -31,15 +33,16 @@ class TestActivityCenter:
         logger.info("开始加载测试数据...")
         url = activity_center_info['request']['url']
         header = activity_center_info['request']['headers']
+        all_url=con_url+url #拼接完整url，域名端口号+路径
         header['authorization']=token
         method = activity_center_info['request']['method']
         data = activity_center_info['request']['data']
         logger.info("测试数据加载完成！")
         logger.info("开始发送接口请求...")
         try:
-            query_res = RequestTools().send_requests(method=method, url=url, data=data, header=header)
+            query_res = RequestTools().send_requests(method=method, url=all_url, data=data, header=header)
             #logger.info("接口请求发送成功！")
-            #logger.info("请求数据:url:{}, headers:{}, method:{},  data:{}".format(url, header, method, data))
+            #logger.info("请求数据:all_url:{}, headers:{}, method:{},  data:{}".format(all_url, header, method, data))
             #logger.info(f'查询活动请求响应结果:{query_res}')
 
             total=query_res['result']['total']   #获取活动总数

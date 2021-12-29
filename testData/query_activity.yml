@@ -1,6 +1,6 @@
 - name: 查询活动-活动ID正确
   request:
-    url: https://
+    url: api/activity/list
     headers:
       content-type: application/json;charset=UTF-8
       Connection: close
@@ -15,7 +15,7 @@
 
 - name: 查询活动-活动ID不存在
   request:
-    url: https://
+    url: api/activity/list
     headers:
       content-type: application/json;charset=UTF-8
       Connection: close
@@ -31,7 +31,7 @@
 
 - name: 查询活动-活动ID输入空格
   request:
-    url: https://
+    url: api/activity/list
     headers:
       content-type: application/json;charset=UTF-8
       Connection: close
@@ -48,7 +48,7 @@
 
 - name: 查询活动-活动ID 模糊搜索
   request:
-    url: https://
+    url: api/activity/list
     headers:
       content-type: application/json;charset=UTF-8
       Connection: close
